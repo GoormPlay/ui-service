@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${DB_NAME:ui_db}?allowPublicKeyRetrieval=true
+    username: ${MYSQL_USER:admin}
+    password: ${MYSQL_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: none  # 운영환경에서는 update 대신 none
+    show-sql: false   # 운영환경에서는 SQL 로그 비활성화
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+  data:
+    mongodb:
+      uri: ${MONGODB_URL:}
+      database: content-db
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
