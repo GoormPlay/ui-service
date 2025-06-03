@@ -4,6 +4,12 @@ spring:
     url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${DB_NAME:ui_db}?allowPublicKeyRetrieval=true
     username: ${MYSQL_USER:admin}
     password: ${MYSQL_PASSWORD:}
+    hikari:
+      maximum-pool-size: 10   # 너무 높지 않게 제한
+      idle-timeout: 600000    # 10분
+      max-lifetime: 1800000   # 30분
+      connection-timeout: 30000
+      validation-timeout: 5000
   jpa:
     hibernate:
       ddl-auto: none  # 운영환경에서는 update 대신 none
