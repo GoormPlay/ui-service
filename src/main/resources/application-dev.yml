@@ -1,9 +1,15 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${DB_NAME:ui_db}   # Jenkins 환경변수 MYSQL_URL이 있으면 사용, 없으면 localhost
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${DB_NAME:ui_db}
     username: ${MYSQL_USER:root}
     password: ${MYSQL_PASSWORD:}
+    hikari:
+      maximum-pool-size: 5     # 로컬에선 5로 줄이기
+      minimum-idle: 1
+      idle-timeout: 30000      # 30초
+      max-lifetime: 1800000    # 30분
+      connection-timeout: 10000
   jpa:
     hibernate:
       ddl-auto: update
