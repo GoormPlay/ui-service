@@ -15,7 +15,7 @@ import java.util.List;
 public class ClickEventLogDto {
     @Nullable
     private String userId;
-    private String contentId;
+    private String videoId;
     private String timestamp;
     private String eventType;             // "content_click" 또는 "content_recom_click"
     private String page;                  // ex: "content_detail"

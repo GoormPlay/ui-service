@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class InteractionRequestDto {
-    private String contentId;
+    private String videoId;
     private String timestamp;
 }

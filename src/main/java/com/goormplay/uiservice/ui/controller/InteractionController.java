@@ -3,7 +3,6 @@ package com.goormplay.uiservice.ui.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.goormplay.uiservice.ui.dto.InteractionRequestDto;
-import com.goormplay.uiservice.ui.dto.LikedContentDto;
 import com.goormplay.uiservice.ui.dto.event.LikeToggleEventDto;
 import com.goormplay.uiservice.ui.service.InteractionService;
 
@@ -27,10 +26,10 @@ public class InteractionController {
     private final InteractionService interactionService;
     private final ObjectMapper objectMapper;
 
-    @GetMapping("/content/{contentId}/liked/{userId}")
+    @GetMapping("/content/{videoId}/liked/{userId}")
     public boolean isContentLikedByUser(
-            @PathVariable String contentId, @PathVariable String userId) {
-        return interactionService.isContentLikedByUser(contentId, userId);
+            @PathVariable String videoId, @PathVariable String userId) {
+        return interactionService.isContentLikedByUser(videoId, userId);
     }
 
     @PostMapping("/like")
@@ -41,20 +40,20 @@ public class InteractionController {
         String userId = principal.get("memberId");
         boolean liked = interactionService.toggleLike(
                 userId,
-                requestDto.getContentId()
+                requestDto.getVideoId()
         );
         LikeToggleEventDto event = LikeToggleEventDto.builder()
                 .userId(userId)
-                .contentId(requestDto.getContentId())
+                .videoId(requestDto.getVideoId())
                 .liked(liked)
                 .timestamp(requestDto.getTimestamp())
                 .build();
         publish(event);
     }
-    // contentIds로 content 조회
+    // videoIds로 content 조회
    @GetMapping("/content/{userId}/liked")
    public List<String>  getLikedContentsId(@PathVariable String userId) {
-        return interactionService.getLikedContentIds(userId);
+        return interactionService.getLikedVideoIds(userId);
    }
 
     private void publish(LikeToggleEventDto eventDto) {

@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ContentClickEventDto {
-    private String contentId;
+    private String videoId;
     private List<String> genre;
     private String timestamp;
     private boolean trending;

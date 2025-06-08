@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class LikeToggleEventDto {
     @Nullable
     private String userId; // 백엔드에서 붙임
-    private String contentId;
+    private String videoId;
     private boolean liked;
     private String timestamp;
 }
