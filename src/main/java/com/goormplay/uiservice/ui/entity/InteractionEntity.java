@@ -18,10 +18,8 @@ public class InteractionEntity {
 
     @Id
     private String id;
-
     private String userId;
-    private String contentId;
-
+    private String videoId;
     private boolean liked;
     private LocalDateTime updatedAt;
 }

@@ -22,8 +22,8 @@ public class ContentPlayEventController {
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    @PostMapping("/{contentId}")
-    public ResponseEntity<Map<String, String>> trackPlayEvent(@PathVariable String contentId, @RequestBody ContentPlayEventDto request, Authentication authentication) {
+    @PostMapping("/{videoId}")
+    public ResponseEntity<Map<String, String>> trackPlayEvent(@PathVariable String videoId, @RequestBody ContentPlayEventDto request, Authentication authentication) {
         try {
         @SuppressWarnings("unchecked")
         Map<String, String> principal = (Map<String, String>) authentication.getPrincipal();
