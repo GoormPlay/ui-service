@@ -29,7 +29,15 @@ public class InteractionController {
     @GetMapping("/content/{videoId}/liked/{userId}")
     public boolean isContentLikedByUser(
             @PathVariable String videoId, @PathVariable String userId) {
-        return interactionService.isContentLikedByUser(videoId, userId);
+        log.info("UI Service - Checking like status for videoId: {}, userId: {}", videoId, userId);
+        try {
+            boolean result = interactionService.isContentLikedByUser(videoId, userId);
+            log.info("UI Service - Like status result: {}", result);
+            return result;
+        } catch (Exception e) {
+            log.info("UI Service - Error checking like status: ", e);
+            throw e;
+        }
     }
 
     @PostMapping("/like")
