@@ -26,9 +26,9 @@ public class InteractionController {
     private final InteractionService interactionService;
     private final ObjectMapper objectMapper;
 
-    @GetMapping("/content/{videoId}/liked/{userId}")
+    @GetMapping("/content/liked")
     public boolean isContentLikedByUser(
-            @PathVariable String videoId, @PathVariable String userId) {
+            @RequestParam String videoId, @RequestParam String userId) {
         log.info("UI Service - Checking like status for videoId: {}, userId: {}", videoId, userId);
         try {
             boolean result = interactionService.isContentLikedByUser(videoId, userId);
