@@ -21,7 +21,15 @@ public class InteractionService {
     private final InteractionRepository interactionRepository;
 
     public boolean isContentLikedByUser(String videoId, String userId) {
-        return interactionRepository.existsByUserIdAndVideoIdAndLikedTrue(userId, videoId);
+        log.debug("Checking like status in service - videoId: {}, userId: {}", videoId, userId);
+        try {
+            boolean result = interactionRepository.existsByUserIdAndVideoIdAndLikedTrue(userId, videoId);
+            log.debug("Like status result from repository: {}", result);
+            return result;
+        } catch (Exception e) {
+            log.error("Error in isContentLikedByUser: ", e);
+            throw e;
+        }
     }
 
     @Transactional

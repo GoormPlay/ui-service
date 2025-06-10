@@ -15,15 +15,15 @@ import java.util.Collections;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/ui/play")
+@RequestMapping("/ui")
 @RequiredArgsConstructor
 @Slf4j
 public class ContentPlayEventController {
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    @PostMapping("/{videoId}")
-    public ResponseEntity<Map<String, String>> trackPlayEvent(@PathVariable String videoId, @RequestBody ContentPlayEventDto request, Authentication authentication) {
+    @PostMapping("/play")
+    public ResponseEntity<Map<String, String>> trackPlayEvent(@RequestParam String videoId, @RequestBody ContentPlayEventDto request, Authentication authentication) {
         try {
         @SuppressWarnings("unchecked")
         Map<String, String> principal = (Map<String, String>) authentication.getPrincipal();
