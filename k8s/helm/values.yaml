@@ -1,0 +1,11 @@
+image:
+  repository: roin09/ui-service
+  tag: latest
+
+service:
+  port: 80
+  targetPort: 8086
+
+env:
+  useConfigMap: true
+  useSecret: true
