@@ -1,7 +1,8 @@
 apiVersion: v2
 name: ui-service
+description: Helm chart for ui-service
 version: 0.1.0
 dependencies:
   - name: base-template
     version: 0.1.0
-    repository: "file://base-template"
+    repository: file://base-template
